@@ -12,6 +12,10 @@
 	}
 }
 
+.flex-center {
+	@apply flex items-center justify-center;
+}
+
 input[type="search"]::-webkit-search-cancel-button {
 	-webkit-appearance: none;
 }
