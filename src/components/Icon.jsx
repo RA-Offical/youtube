@@ -1,8 +1,12 @@
 import { sprite } from "../assets/icons";
 
-const Icon = ({ icon }) => {
+const Icon = ({
+	dimenStyle = "w-6 h-6",
+	appearanceStyle = "text-dark-200",
+	icon,
+}) => {
 	return (
-		<svg className="w-6 h-6 text-dark-200">
+		<svg className={`${dimenStyle} ${appearanceStyle}`}>
 			<use xlinkHref={`${sprite}#${icon}`}></use>
 		</svg>
 	);
