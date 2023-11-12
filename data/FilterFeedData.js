@@ -1,0 +1,15 @@
+export default [
+	{ id: 1, filterText: "All", isSelected: true },
+	{ id: 2, filterText: "Gaming", isSelected: false },
+	{ id: 3, filterText: "Javascript", isSelected: false },
+	{ id: 4, filterText: "Fandango Movieclips", isSelected: false },
+	{ id: 5, filterText: "History", isSelected: false },
+	{ id: 6, filterText: "Superhero movies", isSelected: false },
+	{ id: 7, filterText: "Live", isSelected: false },
+	{ id: 8, filterText: "Sales", isSelected: false },
+	{ id: 9, filterText: "Role-Playing Games", isSelected: false },
+	{ id: 10, filterText: "Presentation", isSelected: false },
+	{ id: 11, filterText: "Recently uploaded", isSelected: false },
+	{ id: 12, filterText: "Watched", isSelected: false },
+	{ id: 13, filterText: "New to you", isSelected: false },
+];
