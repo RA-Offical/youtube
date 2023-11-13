@@ -1,4 +1,4 @@
-import { FilterFeed, Header, Sidebar, Videos } from "./components";
+import { FilterFeedCarasoul, Header, Sidebar, Videos } from "./components";
 
 function App() {
 	return (
@@ -8,7 +8,7 @@ function App() {
 			<div className="flex">
 				<Sidebar />
 				<main className="overflow-hidden">
-					<FilterFeed />
+					<FilterFeedCarasoul />
 					<Videos />
 				</main>
 			</div>
