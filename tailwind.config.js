@@ -40,6 +40,17 @@ module.exports = {
 					},
 				},
 			});
+
+			addUtilities({
+				".sidebar-height": {
+					height: "calc(100vh - 56px)",
+				},
+				".flex-center": {
+					display: "flex",
+					alignItems: "center",
+					justifyContent: "center",
+				},
+			});
 		}),
 	],
 };

@@ -30,7 +30,7 @@ const FilterFeedCarasoul = () => {
 	);
 
 	return (
-		<div className="flex px-4 py-3 relative">
+		<div className="sticky top-14 z-10 px-4 py-3 bg-white ">
 			{/* button for moving left */}
 			<FilterFeedButton
 				icon={"lessThan"}

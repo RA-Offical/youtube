@@ -7,7 +7,7 @@ function App() {
 
 			<div className="flex">
 				<Sidebar />
-				<main className="overflow-hidden">
+				<main className="overflow-clip">
 					<FilterFeedCarasoul />
 					<Videos />
 				</main>

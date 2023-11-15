@@ -4,7 +4,7 @@ import { Icon, Search } from "./";
 
 const Header = () => {
 	return (
-		<header className="flex items-center justify-between h-14 px-4 ">
+		<header className="sticky top-0 z-10  flex items-center justify-between h-14 px-4 bg-white">
 			{/* logo section */}
 
 			<div className="shrink-0 flex items-center gap-4 mr-16">
