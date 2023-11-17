@@ -11,3 +11,6 @@ export { default as FilterFeedCarasoul } from "./FilterFeedCarasoul";
 export { default as FilterFeedButton } from "./FilterFeedButton";
 export { default as Guide } from "./Guide";
 export { default as GuideCategory } from "./GuideCategory";
+export { default as Image } from "./Image";
+export { default as InnerGuide } from "./InnerGuide";
+export { default as OuterGuide } from "./OuterGuide";

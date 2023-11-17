@@ -1,4 +1,5 @@
 import { FilterFeedCarasoul, Header, Sidebar, Videos } from "./components";
+import { SidebarProvider } from "./context/sidebarContext";
 
 function App() {
 	return (
@@ -6,7 +7,10 @@ function App() {
 			<Header />
 
 			<div className="flex">
-				<Sidebar />
+				<SidebarProvider>
+					<Sidebar />
+				</SidebarProvider>
+
 				<main className="overflow-clip">
 					<FilterFeedCarasoul />
 					<Videos />

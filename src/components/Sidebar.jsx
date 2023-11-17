@@ -1,8 +1,10 @@
 import { GuideCategory } from ".";
-import sidebarData from "../data/SidebarData";
+import { useSidebarContext } from "../context/sidebarContext";
 
 const Sidebar = () => {
-	console.log(sidebarData);
+	// getting sidebar data from sidebar context
+	const { sidebarData } = useSidebarContext();
+
 	return (
 		<div className="shrink-0 w-[270px] sticky top-14 self-start sidebar-height overflow-auto scrollbar">
 			{sidebarData.map((guideCategory) => {
