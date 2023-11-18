@@ -4,18 +4,32 @@ const sidebarReducer = (state, action) => {
 		case "CHANGE_GUIDE_SELECTION": {
 			// getting data from payload
 			const { guideId } = action.payload;
-			// making a copy of state
-			const updatedSidebarData = [...state];
-			// finding the guide item by id
-			updatedSidebarData.forEach((category) =>
-				category.guideItems.forEach((guideItem) => {
-					if (guideItem.id === guideId) {
-						guideItem.isSelected = true;
-					} else {
-						guideItem.isSelected = false;
-					}
-				})
-			);
+
+			// updating the sidebar data
+			const updatedSidebarData = state.map((category) => {
+				if (category.nestedGuide) {
+					return {
+						...category,
+						nestedGuide: category.nestedGuide.map((category) => ({
+							...category,
+							guideItems: category.guideItems.map(
+								(guideItem) => ({
+									...guideItem,
+									isSelected: guideItem.id === guideId,
+								})
+							),
+						})),
+					};
+				} else {
+					return {
+						...category,
+						guideItems: category.guideItems.map((guideItem) => ({
+							...guideItem,
+							isSelected: guideItem.id === guideId,
+						})),
+					};
+				}
+			});
 			return updatedSidebarData;
 		}
 	}

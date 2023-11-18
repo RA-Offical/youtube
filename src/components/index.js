@@ -14,3 +14,5 @@ export { default as GuideCategory } from "./GuideCategory";
 export { default as Image } from "./Image";
 export { default as InnerGuide } from "./InnerGuide";
 export { default as OuterGuide } from "./OuterGuide";
+export { default as GuideCategoryTitle } from "./GuideCategoryTitle";
+export { default as FeedTitle } from "./FeedTitle";

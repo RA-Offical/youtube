@@ -26,9 +26,7 @@ const GuideCategory = (props) => {
 				})
 			) : (
 				<>
-					<h2 className="px-3 pt-1.5 pb-1 font-medium">
-						{GuideHeading}
-					</h2>
+					{typeof GuideHeading === "function" ? <GuideHeading /> : ""}
 					{guideItems.map((guideItem) => {
 						return <Guide key={guideItem.id} {...guideItem} />;
 					})}

@@ -1,5 +1,6 @@
 import { channel_avatar_1 } from "../assets/images";
 import { channel_avatar_2 } from "../assets/images";
+import { FeedTitle, GuideCategoryTitle } from "../components";
 export default [
 	{
 		id: 1,
@@ -27,14 +28,16 @@ export default [
 						id: 5,
 						icon: "subscription",
 						iconFill: "subscription-fill",
-						guideText: "Shorts",
+						guideText: "Subscriptions",
 						isSelected: false,
 					},
 				],
 			},
 			{
 				id: 6,
-				GuideHeading: "You >",
+				GuideHeading: function () {
+					return <FeedTitle />;
+				},
 				guideItems: [
 					{
 						id: 7,
@@ -70,7 +73,9 @@ export default [
 
 	{
 		id: 11,
-		GuideHeading: "Subscriptions",
+		GuideHeading: function () {
+			return <GuideCategoryTitle text={"Subscriptions"} />;
+		},
 		guideItems: [
 			{
 				id: 12,
@@ -95,7 +100,9 @@ export default [
 	},
 	{
 		id: 15,
-		GuideHeading: "Explore",
+		GuideHeading: function () {
+			return <GuideCategoryTitle text={"Explore"} />;
+		},
 		guideItems: [
 			{
 				id: 16,
@@ -137,7 +144,9 @@ export default [
 	},
 	{
 		id: 21,
-		GuideHeading: "More from Youtube",
+		GuideHeading: function () {
+			return <GuideCategoryTitle text={"More from Youtube"} />;
+		},
 		guideItems: [
 			{
 				id: 22,
