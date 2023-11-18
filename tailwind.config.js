@@ -4,6 +4,14 @@ module.exports = {
 	content: ["./src/**/*.{js,jsx,ts,tsx}"],
 	theme: {
 		extend: {
+			fontSize: {
+				xsm: [
+					"10px",
+					{
+						lineHeight: "14px",
+					},
+				],
+			},
 			colors: {
 				gray: {
 					50: "#f2f2f2",

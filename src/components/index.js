@@ -16,3 +16,6 @@ export { default as InnerGuide } from "./InnerGuide";
 export { default as OuterGuide } from "./OuterGuide";
 export { default as GuideCategoryTitle } from "./GuideCategoryTitle";
 export { default as FeedTitle } from "./FeedTitle";
+export { default as OpenedSidebar } from "./OpenedSidebar";
+export { default as ClosedSidebar } from "./ClosedSidebar";
+export { default as ClosedSidebarGuide } from "./ClosedSidebarGuide";
