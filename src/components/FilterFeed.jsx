@@ -1,8 +1,10 @@
-import { memo } from "react";
-import filterFeedData from "../data/FilterFeedData";
+import { memo, useState } from "react";
+import FilterFeedData from "../data/FilterFeedData";
 import { Filter } from "./";
 
 const FilterFeed = ({ slideRef, handleScroll }) => {
+	const [filterFeedData, setFilterFeedData] = useState(FilterFeedData);
+
 	return (
 		<div
 			ref={slideRef}
@@ -10,7 +12,14 @@ const FilterFeed = ({ slideRef, handleScroll }) => {
 			className="flex gap-3 overflow-auto hide-scroll scroll-smooth"
 		>
 			{filterFeedData.map((filter) => {
-				return <Filter key={filter.id} {...filter} />;
+				return (
+					<Filter
+						key={filter.id}
+						{...filter}
+						filterFeedData={filterFeedData}
+						setFilterFeedData={setFilterFeedData}
+					/>
+				);
 			})}
 		</div>
 	);

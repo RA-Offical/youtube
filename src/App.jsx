@@ -1,13 +1,18 @@
+import { useState } from "react";
 import { FilterFeedCarasoul, Header, Sidebar, Videos } from "./components";
 import { SidebarProvider } from "./context/sidebarContext";
-
 function App() {
+	const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
 	return (
 		<div>
-			<Header />
+			<Header
+				isSidebarOpen={isSidebarOpen}
+				setIsSidebarOpen={setIsSidebarOpen}
+			/>
 			<div className="flex">
 				<SidebarProvider>
-					<Sidebar />
+					<Sidebar isSidebarOpen={isSidebarOpen} />
 				</SidebarProvider>
 
 				<main className="overflow-clip">

@@ -2,13 +2,16 @@ import { logo } from "../assets/icons";
 import { profile_avatar } from "../assets/images";
 import { Icon, Search } from "./";
 
-const Header = () => {
+const Header = ({ isSidebarOpen, setIsSidebarOpen }) => {
 	return (
 		<header className="sticky top-0 z-10  flex items-center justify-between h-14 px-4 bg-white">
 			{/* logo section */}
 
 			<div className="shrink-0 flex items-center gap-4 mr-16">
-				<button className="p-2  rounded-full hover:bg-gray-300">
+				<button
+					className="p-2  rounded-full hover:bg-gray-300"
+					onClick={(e) => setIsSidebarOpen(!isSidebarOpen)}
+				>
 					<Icon icon={"menu"} />
 				</button>
 
