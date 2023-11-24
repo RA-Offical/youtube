@@ -1,7 +1,7 @@
 import React from "react";
-import { Guide } from "./";
+import { OpenedSidebarGuide } from ".";
 
-const GuideCategory = (props) => {
+const OpenedSidebarGuideCategory = (props) => {
 	const { GuideHeading, guideItems, nestedGuide, isNested } = props;
 
 	const isGuideNested = Boolean(nestedGuide);
@@ -17,7 +17,7 @@ const GuideCategory = (props) => {
 			{isGuideNested ? (
 				nestedGuide.map((guide) => {
 					return (
-						<GuideCategory
+						<OpenedSidebarGuideCategory
 							key={guide.id}
 							{...guide}
 							isNested={true}
@@ -28,7 +28,12 @@ const GuideCategory = (props) => {
 				<>
 					{typeof GuideHeading === "function" ? <GuideHeading /> : ""}
 					{guideItems.map((guideItem) => {
-						return <Guide key={guideItem.id} {...guideItem} />;
+						return (
+							<OpenedSidebarGuide
+								key={guideItem.id}
+								{...guideItem}
+							/>
+						);
 					})}
 				</>
 			)}
@@ -36,4 +41,4 @@ const GuideCategory = (props) => {
 	);
 };
 
-export default GuideCategory;
+export default OpenedSidebarGuideCategory;

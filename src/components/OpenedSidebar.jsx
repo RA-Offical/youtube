@@ -1,15 +1,18 @@
-import { GuideCategory } from ".";
+import { OpenedSidebarGuideCategory } from ".";
 import { useSidebarContext } from "../context/sidebarContext";
 
 const OpenedSidebar = () => {
 	// getting sidebar data from sidebar context
-	const { sidebarData } = useSidebarContext();
+	const { openedSidebarData } = useSidebarContext();
 
 	return (
 		<div className="shrink-0 w-[270px] sticky top-14 self-start sidebar-height overflow-auto scrollbar">
-			{sidebarData.map((guideCategory) => {
+			{openedSidebarData.map((guideCategory) => {
 				return (
-					<GuideCategory key={guideCategory.id} {...guideCategory} />
+					<OpenedSidebarGuideCategory
+						key={guideCategory.id}
+						{...guideCategory}
+					/>
 				);
 			})}
 		</div>

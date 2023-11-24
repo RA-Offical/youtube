@@ -1,7 +1,7 @@
 import { Icon, Image } from ".";
 import { useSidebarContext } from "../context/sidebarContext";
 
-const InnerGuide = ({ props }) => {
+const OpenedSidebarInnerGuide = ({ props }) => {
 	const {
 		styles,
 		canSwitchIcon,
@@ -13,10 +13,10 @@ const InnerGuide = ({ props }) => {
 		id,
 	} = props;
 
-	const { toggleGuideSelection } = useSidebarContext();
+	const { setSelectedGuide } = useSidebarContext();
 
 	const handleClick = () => {
-		if (Boolean(iconFill)) toggleGuideSelection(id);
+		setSelectedGuide(guideText);
 	};
 
 	return (
@@ -26,9 +26,11 @@ const InnerGuide = ({ props }) => {
 			) : (
 				<Icon icon={canSwitchIcon ? iconFill : icon} />
 			)}
-			<h3 className={`${isSelected && "font-medium"}`}>{guideText}</h3>
+			<h3 className={`${isSelected ? "font-medium" : ""}`}>
+				{guideText}
+			</h3>
 		</div>
 	);
 };
 
-export default InnerGuide;
+export default OpenedSidebarInnerGuide;

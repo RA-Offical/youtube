@@ -1,6 +1,6 @@
-import { Icon } from "./";
+import { Icon } from ".";
 
-const OuterGuide = ({ props }) => {
+const OpenedSidebarOuterGuide = ({ props }) => {
 	const { styles, link, icon, guideText } = props;
 
 	return (
@@ -11,4 +11,4 @@ const OuterGuide = ({ props }) => {
 	);
 };
 
-export default OuterGuide;
+export default OpenedSidebarOuterGuide;

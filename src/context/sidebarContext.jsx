@@ -1,29 +1,26 @@
-import { createContext, useContext, useReducer } from "react";
-import SidebarData from "../data/SidebarData";
-import sidebarReducer from "../reducer/sidebarReducer";
-
+import { createContext, useContext } from "react";
+import OpenSidebarData from "../data/OpenedSidebarData";
+import { useState } from "react";
+import ClosedSidebarData from "../data/ClosedSidebarData";
 // creating context
 const SidebarContext = createContext();
 
-// initial state
-const initialState = [...SidebarData];
-
 // sidebar provider
 const SidebarProvider = ({ children }) => {
-	const [state, dispatch] = useReducer(sidebarReducer, initialState);
-
-	const toggleGuideSelection = (guideId) => {
-		dispatch({
-			type: "CHANGE_GUIDE_SELECTION",
-			payload: { guideId },
-		});
-	};
+	const [selectedGuide, setSelectedGuide] = useState("Home");
+	const [openedSidebarData, setOpenedSidebarData] = useState(OpenSidebarData);
+	const [closedSidebarData, setClosedSidebarData] =
+		useState(ClosedSidebarData);
 
 	return (
 		<SidebarContext.Provider
 			value={{
-				sidebarData: state,
-				toggleGuideSelection,
+				openedSidebarData,
+				setOpenedSidebarData,
+				closedSidebarData,
+				setClosedSidebarData,
+				selectedGuide,
+				setSelectedGuide,
 			}}
 		>
 			{children}
@@ -37,4 +34,4 @@ export const useSidebarContext = () => {
 };
 
 // export SidebarContext and SidebarProvider
-export { SidebarContext, SidebarProvider };
+export { SidebarProvider };
