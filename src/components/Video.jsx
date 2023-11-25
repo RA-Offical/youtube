@@ -2,20 +2,24 @@ import { Icon } from "./";
 
 const Video = (props) => {
 	const {
-		thumbnailImg,
+		videoThumbnail,
 		videoTitle,
 		channelName,
 		videoViews,
-		timePosted,
+		videoPublished,
 		isVerified,
-		channelImg,
+		channelThumbnail,
 	} = props;
 	return (
 		<div className=" py-2">
-			<img src={thumbnailImg} alt={videoTitle} className="rounded-xl" />
+			<img
+				src={videoThumbnail}
+				alt={videoTitle}
+				className="rounded-xl w-full aspect-[16/9] object-cover"
+			/>
 			<div className="grid gap-3 grid-cols-[36px_1fr] mt-3">
 				<img
-					src={channelImg}
+					src={channelThumbnail}
 					alt={channelName}
 					className="rounded-full"
 				/>
@@ -41,7 +45,7 @@ const Video = (props) => {
 					<div className="text-gray-700 text-sm flex">
 						<p>{videoViews}</p>
 						<p className="before:content-['•'] before:mx-1">
-							{timePosted}
+							{videoPublished}
 						</p>
 					</div>
 				</div>
