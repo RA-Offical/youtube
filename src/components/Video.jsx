@@ -43,7 +43,7 @@ const Video = (props) => {
 					</div>
 
 					<div className="text-gray-700 text-sm flex">
-						<p>{videoViews}</p>
+						<p>{videoViews} views</p>
 						<p className="before:content-['•'] before:mx-1">
 							{videoPublished}
 						</p>
