@@ -6,14 +6,9 @@ const OpenedSidebar = () => {
 	const { openedSidebarData } = useSidebarContext();
 
 	return (
-		<div className="shrink-0 w-[270px] sticky top-14 self-start sidebar-height overflow-auto scrollbar">
+		<div className="shrink-0 w-[250px] sticky top-14 self-start sidebar-height overflow-auto scrollbar">
 			{openedSidebarData.map((guideCategory) => {
-				return (
-					<OpenedSidebarGuideCategory
-						key={guideCategory.id}
-						{...guideCategory}
-					/>
-				);
+				return <OpenedSidebarGuideCategory key={guideCategory.id} {...guideCategory} />;
 			})}
 		</div>
 	);

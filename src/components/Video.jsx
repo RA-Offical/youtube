@@ -9,44 +9,48 @@ const Video = (props) => {
 		videoPublished,
 		isVerified,
 		channelThumbnail,
+		videoURL,
+		channelURL,
 	} = props;
+
+	// Navigate to video URL
+	function navigateToVideo(videoURL) {
+		location.href = videoURL;
+	}
+
 	return (
 		<div className=" py-2">
-			<img
-				src={videoThumbnail}
-				alt={videoTitle}
-				className="rounded-xl w-full aspect-[16/9] object-cover"
-			/>
-			<div className="grid gap-3 grid-cols-[36px_1fr] mt-3">
+			<a href={videoURL}>
 				<img
-					src={channelThumbnail}
-					alt={channelName}
-					className="rounded-full"
+					src={videoThumbnail}
+					alt={videoTitle}
+					className="rounded-xl w-full aspect-[16/9] object-cover"
 				/>
+			</a>
 
-				<div className="">
-					<h2 className="text-dark-100 font-medium text-base line-clamp-2 mb-1">
-						{videoTitle}
-					</h2>
+			<div className="grid gap-3 grid-cols-[36px_1fr] mt-3 cursor-pointer">
+				<a href={channelURL}>
+					<img src={channelThumbnail} alt={channelName} className="rounded-full" />
+				</a>
+
+				<div className="cursor-pointer" onClick={() => navigateToVideo(videoURL)}>
+					<h2 className="text-dark-100 font-medium text-base line-clamp-2 mb-1">{videoTitle}</h2>
 
 					<div className="flex gap-2 items-center mb-px text-sm">
-						<p className="text-gray-700 opacity-90 hover:opacity-100 cursor-pointer">
+						<a
+							href={channelURL}
+							target="_blank"
+							className="text-gray-700 opacity-90 hover:opacity-100 ">
 							{channelName}
-						</p>
+						</a>
 						{isVerified && (
-							<Icon
-								icon={"tick"}
-								dimenStyle="w-4 h-4"
-								appearanceStyle="text-gray-700"
-							/>
+							<Icon icon={"tick"} dimenStyle="w-4 h-4" appearanceStyle="text-gray-700" />
 						)}
 					</div>
 
 					<div className="text-gray-700 text-sm flex">
 						<p>{videoViews} views</p>
-						<p className="before:content-['•'] before:mx-1">
-							{videoPublished}
-						</p>
+						<p className="before:content-['•'] before:mx-1">{videoPublished}</p>
 					</div>
 				</div>
 			</div>
