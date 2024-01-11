@@ -20,29 +20,24 @@ const Video = (props) => {
 
 	return (
 		<div className=" py-2">
-			<a href={videoURL}>
-				<img
-					src={videoThumbnail}
-					alt={videoTitle}
-					className="rounded-xl w-full aspect-[16/9] object-cover"
-				/>
-			</a>
-
+			<img
+				src={videoThumbnail}
+				alt={videoTitle}
+				className="rounded-xl w-full aspect-[16/9] object-cover"
+			/>
 			<div className="grid gap-3 grid-cols-[36px_1fr] mt-3 cursor-pointer">
-				<a href={channelURL}>
-					<img src={channelThumbnail} alt={channelName} className="rounded-full" />
-				</a>
+				<img src={channelThumbnail} alt={channelName} className="rounded-full" />
 
 				<div className="cursor-pointer" onClick={() => navigateToVideo(videoURL)}>
 					<h2 className="text-dark-100 font-medium text-base line-clamp-2 mb-1">{videoTitle}</h2>
 
 					<div className="flex gap-2 items-center mb-px text-sm">
-						<a
+						<p
 							href={channelURL}
 							target="_blank"
 							className="text-gray-700 opacity-90 hover:opacity-100 ">
 							{channelName}
-						</a>
+						</p>
 						{isVerified && (
 							<Icon icon={"tick"} dimenStyle="w-4 h-4" appearanceStyle="text-gray-700" />
 						)}

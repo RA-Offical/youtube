@@ -6,6 +6,7 @@ const Videos = () => {
 
 	if (isLoading) return <div>Fetching posts...</div>;
 	if (error) return <div>An error occurred: {error.message}</div>;
+	console.log(videosData);
 
 	return (
 		<div className="px-4 pt-6 grid gap-4  md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">

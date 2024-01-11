@@ -1,26 +1,13 @@
-import { useState } from "react";
-import { FilterFeedCarasoul, Header, Sidebar, Videos } from "./components";
-import { SidebarProvider } from "./context/sidebarContext";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import SharedYoutube from "./pages/SharedYoutube";
 function App() {
-	const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-
 	return (
-		<div>
-			<Header
-				isSidebarOpen={isSidebarOpen}
-				setIsSidebarOpen={setIsSidebarOpen}
-			/>
-			<div className="flex">
-				<SidebarProvider>
-					<Sidebar isSidebarOpen={isSidebarOpen} />
-				</SidebarProvider>
-
-				<main className="overflow-clip">
-					<FilterFeedCarasoul />
-					<Videos />
-				</main>
-			</div>
-		</div>
+		<Routes>
+			<Route path="/" element={<SharedYoutube />}>
+				<Route index element={<Home />} />
+			</Route>
+		</Routes>
 	);
 }
 
