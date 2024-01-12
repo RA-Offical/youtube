@@ -12,6 +12,43 @@ const APIs = {
 	getChannelURL: (channelCustomURL) => `https://www.youtube.com/${channelCustomURL}`,
 };
 
+// Function to fetch channel info
+async function fetchChannelInfo(channelId) {
+	const channelResponse = await axios.get(APIs.getChannelInfo, {
+		params: {
+			key: import.meta.env.VITE_API_KEY,
+			part: "snippet",
+			id: channelId,
+		},
+	});
+	return channelResponse.data.items[0];
+}
+
+// Function to transform video data
+async function transformVideoData(video, pageToken) {
+	const channelId = video.snippet.channelId;
+	const channelData = await fetchChannelInfo(channelId);
+	const channelThumbnail = channelData.snippet.thumbnails.default.url;
+	const channelURL = APIs.getChannelURL(channelData.snippet.customUrl);
+	const parsedDate = parseISO(video.snippet.publishedAt);
+	const videoPublished = formatDistanceToNow(parsedDate, { addSuffix: true });
+	const videoViews = numberFormatToSuffix(video.statistics.viewCount);
+
+	return {
+		id: video.id,
+		videoURL: APIs.getVideoURL(video.id),
+		videoTitle: video.snippet.title,
+		videoThumbnail: video.snippet.thumbnails.standard.url,
+		channelName: video.snippet.channelTitle,
+		videoViews,
+		videoPublished,
+		channelThumbnail,
+		channelId,
+		channelURL,
+	};
+}
+
+// function to get videos from youtube api
 async function getVideos(nextPageToken) {
 	const response = await axios.get(APIs.getVideos, {
 		params: {
@@ -21,54 +58,17 @@ async function getVideos(nextPageToken) {
 			chart: "mostPopular",
 			pageToken: nextPageToken,
 		},
-		transformResponse: [
-			async (rawData) => {
-				const rawVideosData = await JSON.parse(rawData);
-
-				const newNextPageToken = rawVideosData.nextPageToken;
-
-				const videos = await Promise.all(
-					// mapping through the raw data and returning a new array of objects
-					rawVideosData.items.map(async (video) => {
-						// getting the channel id to get information about channel
-						const channelId = video.snippet.channelId;
-						// making request to get channel information
-						const channelResponse = await axios.get(APIs.getChannelInfo, {
-							params: {
-								key: import.meta.env.VITE_API_KEY,
-								part: "snippet",
-								id: channelId,
-							},
-						});
-						// getting the channel thumbnail
-						const channelThumbnail = channelResponse.data.items[0].snippet.thumbnails.default.url;
-						const channelURL = APIs.getChannelURL(channelResponse.data.items[0].snippet.customUrl);
-						// parsing date to readable format
-						const parsedDate = parseISO(video.snippet.publishedAt);
-						const videoPublished = formatDistanceToNow(parsedDate, { addSuffix: true });
-
-						const videoViews = numberFormatToSuffix(video.statistics.viewCount);
-
-						return {
-							id: video.id,
-							videoURL: APIs.getVideoURL(video.id),
-							videoTitle: video.snippet.title,
-							videoThumbnail: video.snippet.thumbnails.standard.url,
-							channelName: video.snippet.channelTitle,
-							videoViews,
-							videoPublished,
-							channelThumbnail,
-							channelId,
-							channelURL,
-						};
-					})
-				);
-				return { nextPageToken: newNextPageToken, videos };
-			},
-		],
 	});
 
-	return response.data;
+	const newNextPageToken = response.data.nextPageToken;
+
+	const videos = await Promise.all(
+		response.data.items.map(async (video) => {
+			return transformVideoData(video, nextPageToken);
+		})
+	);
+
+	return { nextPageToken: newNextPageToken, videos };
 }
 
 export { getVideos };
