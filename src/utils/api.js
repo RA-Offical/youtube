@@ -12,19 +12,22 @@ const APIs = {
 	getChannelURL: (channelCustomURL) => `https://www.youtube.com/${channelCustomURL}`,
 };
 
-async function getVideos() {
+async function getVideos(nextPageToken) {
 	const response = await axios.get(APIs.getVideos, {
 		params: {
 			part: "snippet,contentDetails,statistics",
 			maxResults: 10,
 			key: import.meta.env.VITE_API_KEY,
 			chart: "mostPopular",
+			pageToken: nextPageToken,
 		},
 		transformResponse: [
 			async (rawData) => {
 				const rawVideosData = await JSON.parse(rawData);
 
-				const videosData = await Promise.all(
+				const newNextPageToken = rawVideosData.nextPageToken;
+
+				const videos = await Promise.all(
 					// mapping through the raw data and returning a new array of objects
 					rawVideosData.items.map(async (video) => {
 						// getting the channel id to get information about channel
@@ -60,7 +63,7 @@ async function getVideos() {
 						};
 					})
 				);
-				return videosData;
+				return { nextPageToken: newNextPageToken, videos };
 			},
 		],
 	});
