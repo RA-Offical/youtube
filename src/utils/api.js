@@ -57,6 +57,7 @@ async function getVideos(nextPageToken) {
 			key: import.meta.env.VITE_API_KEY,
 			chart: "mostPopular",
 			pageToken: nextPageToken,
+			regionCode: "PK",
 		},
 	});
 
