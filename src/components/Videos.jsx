@@ -2,6 +2,7 @@ import { Video } from "./";
 import { useInfiniteQuery } from "react-query";
 import { getVideos } from "../utils/api";
 import { useEffect, useRef } from "react";
+import useLoadVideoObserver from "../hooks/useLoadVideoObserver";
 
 const Videos = () => {
 	// using useInfiniteQuery hook
@@ -11,41 +12,11 @@ const Videos = () => {
 		queryFn: ({ pageParam = "" }) => getVideos(pageParam),
 	});
 
-	// using useRef hook
-	const containerRef = useRef(null);
-
-	// using useEffect hook
-
-	useEffect(() => {
-		const observer = new IntersectionObserver(
-			(entries) => {
-				if (entries[0].isIntersecting) {
-					fetchNextPage();
-					console.log(entries[0]);
-				}
-			},
-			{
-				root: null,
-				rootMargin: "200px",
-			}
-		);
-
-		if (containerRef.current) {
-			const lastChild = containerRef.current.lastElementChild;
-			if (lastChild) {
-				observer.observe(lastChild);
-			}
-		}
-
-		return () => {
-			if (containerRef.current) {
-				const lastChild = containerRef.current.lastElementChild;
-				if (lastChild) {
-					observer.unobserve(lastChild);
-				}
-			}
-		};
-	}, [isLoading, isFetchingNextPage]);
+	// using useLoadVideoObserver hook
+	const { containerRef } = useLoadVideoObserver({
+		dependencyArray: [isLoading, isFetchingNextPage],
+		loader: fetchNextPage,
+	});
 
 	// show the loading state
 	if (isLoading) return <div>Fetching posts...</div>;
