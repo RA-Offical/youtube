@@ -1,10 +1,11 @@
-import { Video } from "./";
+import { HomeVideo } from ".";
 import { useInfiniteQuery } from "react-query";
 import { getVideos } from "../utils/api";
 import { useEffect, useRef } from "react";
 import useLoadVideoObserver from "../hooks/useLoadVideoObserver";
+import Spinner from "./Spinner";
 
-const Videos = () => {
+const HomeVideos = () => {
 	// using useInfiniteQuery hook
 	const { data, error, fetchNextPage, isFetchingNextPage, isLoading } = useInfiniteQuery({
 		queryKey: ["videos"],
@@ -25,20 +26,26 @@ const Videos = () => {
 	if (error) return <div>An error occurred: {error.message}</div>;
 
 	return (
-		<div
-			ref={containerRef}
-			className="px-4 pt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-			{data.pages
-				.flatMap((data) => data.videos)
-				.map((video) => {
-					return <Video key={video.id} {...video} />;
-				})}
+		<div>
+			{/* videos grid */}
+			<div
+				ref={containerRef}
+				className="px-4 py-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+				{data.pages
+					.flatMap((data) => data.videos)
+					.map((video) => {
+						return <HomeVideo key={video.id} {...video} />;
+					})}
+			</div>
 
-			<button onClick={() => fetchNextPage()}>
-				{isFetchingNextPage ? "loading" : "Load more"}
-			</button>
+			{/* spinner */}
+			{isFetchingNextPage && (
+				<div className="flex justify-center mt-4 pb-6">
+					<Spinner />
+				</div>
+			)}
 		</div>
 	);
 };
 
-export default Videos;
+export default HomeVideos;

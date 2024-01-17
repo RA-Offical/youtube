@@ -1,10 +1,10 @@
-import { FilterFeedCarasoul, Videos } from "../components";
+import { FilterFeedCarasoul, HomeVideos } from "../components";
 
 function Home() {
 	return (
 		<>
 			<FilterFeedCarasoul />
-			<Videos />
+			<HomeVideos />
 		</>
 	);
 }

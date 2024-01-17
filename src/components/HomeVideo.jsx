@@ -1,6 +1,6 @@
-import { Icon } from "./";
+import { Icon } from ".";
 
-const Video = (props) => {
+const HomeVideo = (props) => {
 	const {
 		videoThumbnail,
 		videoTitle,
@@ -53,4 +53,4 @@ const Video = (props) => {
 	);
 };
 
-export default Video;
+export default HomeVideo;
