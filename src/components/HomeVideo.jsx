@@ -23,7 +23,7 @@ const HomeVideo = (props) => {
 			<img
 				src={videoThumbnail}
 				alt={videoTitle}
-				className="rounded-xl w-full aspect-[16/9] object-cover"
+				className="rounded-xl w-full aspect-[16/9] object-cover "
 			/>
 			<div className="grid gap-3 grid-cols-[36px_1fr] mt-3 cursor-pointer">
 				<img src={channelThumbnail} alt={channelName} className="rounded-full" />
@@ -35,7 +35,7 @@ const HomeVideo = (props) => {
 						<p
 							href={channelURL}
 							target="_blank"
-							className="text-gray-700 opacity-90 hover:opacity-100 ">
+							className="text-gray-700 opacity-90 hover:opacity-100">
 							{channelName}
 						</p>
 						{isVerified && (
