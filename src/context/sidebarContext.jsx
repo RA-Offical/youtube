@@ -9,8 +9,7 @@ const SidebarContext = createContext();
 const SidebarProvider = ({ children }) => {
 	const [selectedGuide, setSelectedGuide] = useState("Home");
 	const [openedSidebarData, setOpenedSidebarData] = useState(OpenSidebarData);
-	const [closedSidebarData, setClosedSidebarData] =
-		useState(ClosedSidebarData);
+	const [closedSidebarData, setClosedSidebarData] = useState(ClosedSidebarData);
 
 	return (
 		<SidebarContext.Provider
@@ -21,8 +20,7 @@ const SidebarProvider = ({ children }) => {
 				setClosedSidebarData,
 				selectedGuide,
 				setSelectedGuide,
-			}}
-		>
+			}}>
 			{children}
 		</SidebarContext.Provider>
 	);

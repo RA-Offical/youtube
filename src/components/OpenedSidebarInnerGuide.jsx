@@ -1,17 +1,8 @@
 import { Icon, Image } from ".";
-import { useSidebarContext } from "../context/sidebarContext";
+import { useSidebarContext } from "../context/SidebarContext";
 
 const OpenedSidebarInnerGuide = ({ props }) => {
-	const {
-		styles,
-		canSwitchIcon,
-		icon,
-		iconFill,
-		guideText,
-		image,
-		isSelected,
-		id,
-	} = props;
+	const { styles, canSwitchIcon, icon, iconFill, guideText, image, isSelected, id } = props;
 
 	const { setSelectedGuide } = useSidebarContext();
 
@@ -21,14 +12,8 @@ const OpenedSidebarInnerGuide = ({ props }) => {
 
 	return (
 		<div title={guideText} className={`${styles}`} onClick={handleClick}>
-			{image ? (
-				<Image image={image} />
-			) : (
-				<Icon icon={canSwitchIcon ? iconFill : icon} />
-			)}
-			<h3 className={`${isSelected ? "font-medium" : ""}`}>
-				{guideText}
-			</h3>
+			{image ? <Image image={image} /> : <Icon icon={canSwitchIcon ? iconFill : icon} />}
+			<h3 className={`${isSelected ? "font-medium" : ""}`}>{guideText}</h3>
 		</div>
 	);
 };

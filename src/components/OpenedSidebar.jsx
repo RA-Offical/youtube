@@ -1,5 +1,5 @@
 import { OpenedSidebarGuideCategory } from ".";
-import { useSidebarContext } from "../context/sidebarContext";
+import { useSidebarContext } from "../context/SidebarContext";
 
 const OpenedSidebar = () => {
 	// getting sidebar data from sidebar context

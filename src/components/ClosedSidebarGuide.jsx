@@ -1,4 +1,4 @@
-import { useSidebarContext } from "../context/sidebarContext";
+import { useSidebarContext } from "../context/SidebarContext";
 import Icon from "./Icon";
 
 const ClosedSidebarGuide = ({ icon, iconFill, guideText, handleClick, id }) => {
@@ -8,8 +8,7 @@ const ClosedSidebarGuide = ({ icon, iconFill, guideText, handleClick, id }) => {
 	return (
 		<div
 			className={`w-16 py-4 flex flex-col items-center gap-1 cursor-pointer hover:bg-gray-50 rounded-xl`}
-			onClick={() => setSelectedGuide(guideText)}
-		>
+			onClick={() => setSelectedGuide(guideText)}>
 			<Icon icon={isSelected ? iconFill : icon} />
 			<h2 className="text-xsm">{guideText}</h2>
 		</div>
