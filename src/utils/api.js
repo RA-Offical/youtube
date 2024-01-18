@@ -74,20 +74,6 @@ async function transformVideoData(video) {
 	};
 }
 
-// function to get useful data from youtube api response
-// async function extractVideosData(rawVideosData) {
-// 	console.log(rawVideosData);
-// 	const nextPageToken = rawVideosData.nextPageToken;
-
-// 	const videos = await Promise.all(
-// 		rawVideosData.items.map(async (video) => {
-// 			return transformVideoData(video);
-// 		})
-// 	);
-
-// 	return { nextPageToken, videos };
-// }
-
 // function to get video content details and statis
 async function getAsyncVideoStatisticsContent(videoId) {
 	const response = await axios.get(APIs.getVideos, {
@@ -101,7 +87,7 @@ async function getAsyncVideoStatisticsContent(videoId) {
 }
 
 // function to get videos from youtube api
-async function getVideos(nextPageToken) {
+async function getVideosIds(nextPageToken) {
 	const response = await axios.get(APIs.getVideos, {
 		params: {
 			part: "snippet,contentDetails,statistics",
@@ -111,17 +97,30 @@ async function getVideos(nextPageToken) {
 			pageToken: nextPageToken,
 			regionCode: "PK",
 		},
+		transformResponse: (response) => {
+			const data = JSON.parse(response);
+			const nextPageToken = data.nextPageToken;
+			const videoIds = data.items.map((item) => {
+				return item.id;
+			});
+			return { nextPageToken, videoIds };
+		},
+	});
+	return response.data;
+}
+
+// function for making a request to information of single video
+async function getVideoInformation(videoId) {
+	const response = await axios.get(APIs.getVideos, {
+		params: {
+			part: "snippet,contentDetails,statistics",
+			id: videoId,
+			key: import.meta.env.VITE_API_KEY,
+		},
 	});
 
-	const newNextPageToken = response.data.nextPageToken;
-
-	const videos = await Promise.all(
-		response.data.items.map(async (video) => {
-			return transformVideoData(video);
-		})
-	);
-
-	return { nextPageToken: newNextPageToken, videos };
+	const video = transformVideoData(response.data.items[0]);
+	return video;
 }
 
 // function for getting search video results
@@ -144,7 +143,6 @@ async function getSearchVideos(searchQuery, nextPageToken) {
 				id: { videoId },
 			} = video;
 			const videoDetails = await getAsyncVideoStatisticsContent(videoId);
-			console.log(videoDetails);
 
 			return transformVideoData(videoDetails);
 		})
@@ -153,4 +151,4 @@ async function getSearchVideos(searchQuery, nextPageToken) {
 	return { nextPageToken: newNextPageToken, videos };
 }
 
-export { getVideos, getSearchVideos };
+export { getVideosIds, getSearchVideos, getVideoInformation };

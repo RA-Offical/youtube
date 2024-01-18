@@ -9,8 +9,7 @@ const FilterFeed = ({ slideRef, handleScroll }) => {
 		<div
 			ref={slideRef}
 			onScroll={handleScroll}
-			className="flex gap-3 overflow-auto hide-scroll scroll-smooth"
-		>
+			className="flex gap-3 overflow-auto hide-scroll scroll-smooth">
 			{filterFeedData.map((filter) => {
 				return (
 					<Filter

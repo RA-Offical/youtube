@@ -20,6 +20,7 @@ function useLoadVideoObserver({ dependencyArray, loader }) {
 		if (containerRef.current) {
 			const lastChild = containerRef.current.lastElementChild;
 			if (lastChild) {
+				console.log(lastChild);
 				observer.observe(lastChild);
 			}
 		}
