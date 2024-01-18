@@ -1,11 +1,9 @@
 import { HomeVideo } from ".";
 import { useInfiniteQuery } from "react-query";
-import { getSearchVideos, getVideosIds } from "../utils/api";
-import { useEffect, useRef } from "react";
+import { getSearchVideosIds, getVideosIds } from "../utils/api";
 import useLoadVideoObserver from "../hooks/useLoadVideoObserver";
 import Spinner from "./Spinner";
 import { useFilterFeedContext } from "../hooks/useFilterFeedProvider";
-import { is } from "date-fns/locale";
 
 const HomeVideos = () => {
 	//using useFilterFeedContext hook
@@ -17,7 +15,8 @@ const HomeVideos = () => {
 		getNextPageParam: (prevData) => prevData.nextPageToken,
 		queryFn: ({ pageParam = "" }) => {
 			if (filterFeed !== "all") {
-				return getSearchVideos(filterFeed, pageParam);
+				if (pageParam) return getSearchVideosIds("", pageParam);
+				return getSearchVideosIds(filterFeed, pageParam);
 			}
 			return getVideosIds(pageParam);
 		},
@@ -28,9 +27,6 @@ const HomeVideos = () => {
 		dependencyArray: [isLoading, isFetchingNextPage],
 		loader: fetchNextPage,
 	});
-
-	// show the loading state
-	// if (isLoading) return <div>Fetching posts...</div>;
 
 	// show the error state
 	if (error) return <div>An error occurred: {error.message}</div>;

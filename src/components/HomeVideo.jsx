@@ -24,7 +24,7 @@ const HomeVideo = ({ videoId }) => {
 
 	return (
 		<SkeletonTheme baseColor="#ccc" highlightColor="#e6e6e6">
-			<div className=" py-2">
+			<div className="py-2">
 				{videoThumbnail ? (
 					<img
 						src={videoThumbnail}
@@ -35,17 +35,23 @@ const HomeVideo = ({ videoId }) => {
 					<Skeleton className="rounded-xl aspect-video" inline={true} />
 				)}
 				<div className="grid gap-3 grid-cols-[36px_1fr] mt-3 cursor-pointer">
-					<img src={channelThumbnail} alt={channelName} className="rounded-full" />
+					{channelThumbnail ? (
+						<img src={channelThumbnail} alt={channelName} className="rounded-full" />
+					) : (
+						<Skeleton circle={true} height={36} width={36} inline={true} />
+					)}
 
 					<div className="cursor-pointer">
-						<h2 className="text-dark-100 font-medium text-base line-clamp-2 mb-1">{videoTitle}</h2>
+						<h2 className="text-dark-100 font-medium text-base line-clamp-2 mb-1">
+							{videoTitle || <Skeleton count={1.5} />}
+						</h2>
 
 						<div className="flex gap-2 items-center mb-px text-sm">
 							<p
 								href={channelURL}
 								target="_blank"
 								className="text-gray-700 opacity-90 hover:opacity-100">
-								{channelName}
+								{channelName || <Skeleton />}
 							</p>
 							{isVerified && (
 								<Icon icon={"tick"} dimenStyle="w-4 h-4" appearanceStyle="text-gray-700" />

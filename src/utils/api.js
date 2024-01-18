@@ -124,7 +124,7 @@ async function getVideoInformation(videoId) {
 }
 
 // function for getting search video results
-async function getSearchVideos(searchQuery, nextPageToken) {
+async function getSearchVideosIds(searchQuery, nextPageToken) {
 	const response = await axios.get(APIs.getSearchURL, {
 		params: {
 			maxResults: 10,
@@ -133,22 +133,17 @@ async function getSearchVideos(searchQuery, nextPageToken) {
 			pageToken: nextPageToken,
 			type: "video",
 		},
+		transformResponse: (response) => {
+			const data = JSON.parse(response);
+			const nextPageToken = data.nextPageToken;
+			const videoIds = data.items.map((item) => {
+				return item.id.videoId;
+			});
+			return { nextPageToken, videoIds };
+		},
 	});
 
-	const newNextPageToken = response.data.nextPageToken;
-
-	const videos = await Promise.all(
-		response.data.items.map(async (video) => {
-			const {
-				id: { videoId },
-			} = video;
-			const videoDetails = await getAsyncVideoStatisticsContent(videoId);
-
-			return transformVideoData(videoDetails);
-		})
-	);
-
-	return { nextPageToken: newNextPageToken, videos };
+	return response.data;
 }
 
-export { getVideosIds, getSearchVideos, getVideoInformation };
+export { getVideosIds, getSearchVideosIds, getVideoInformation };

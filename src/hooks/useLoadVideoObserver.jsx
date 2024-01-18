@@ -17,20 +17,18 @@ function useLoadVideoObserver({ dependencyArray, loader }) {
 			}
 		);
 
+		let lastChild = null;
+
 		if (containerRef.current) {
-			const lastChild = containerRef.current.lastElementChild;
+			lastChild = containerRef.current.lastElementChild;
 			if (lastChild) {
-				console.log(lastChild);
 				observer.observe(lastChild);
 			}
 		}
 
 		return () => {
-			if (containerRef.current) {
-				const lastChild = containerRef.current.lastElementChild;
-				if (lastChild) {
-					observer.unobserve(lastChild);
-				}
+			if (lastChild) {
+				observer.unobserve(lastChild);
 			}
 		};
 	}, dependencyArray);

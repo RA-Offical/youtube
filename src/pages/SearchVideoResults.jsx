@@ -1,7 +1,7 @@
-import { useInfiniteQuery, useQueryClient } from "react-query";
+import { useInfiniteQuery } from "react-query";
 import { SearchVideos } from "../components";
 import Spinner from "../components/Spinner";
-import { getSearchVideos } from "../utils/api";
+import { getSearchVideosIds } from "../utils/api";
 import useLoadVideoObserver from "../hooks/useLoadVideoObserver";
 import { useSearchContext } from "../hooks/useSearchContext";
 import { useEffect } from "react";
@@ -14,7 +14,7 @@ function SearchVideoResults() {
 		queryKey: ["searchVideos", searchQuery],
 		getNextPageParam: (prevData) => prevData.nextPageToken,
 		enabled: !!searchQuery,
-		queryFn: ({ pageParam = "" }) => getSearchVideos(searchQuery, pageParam),
+		queryFn: ({ pageParam = "" }) => getSearchVideosIds(searchQuery, pageParam),
 	});
 
 	// using custom hook to load more videos when the user scrolls to the bottom of the page
