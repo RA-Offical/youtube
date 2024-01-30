@@ -1,9 +1,12 @@
+import PropTypes from "prop-types";
 import { createContext, useContext } from "react";
 import OpenSidebarData from "../data/OpenedSidebarData";
 import { useState } from "react";
 import ClosedSidebarData from "../data/ClosedSidebarData";
 // creating context
 const SidebarContext = createContext();
+
+
 
 // sidebar provider
 const SidebarProvider = ({ children }) => {
@@ -26,6 +29,12 @@ const SidebarProvider = ({ children }) => {
 	);
 };
 
+// defining props for SearchProvider
+SidebarProvider.propTypes = {
+	children: PropTypes.node.isRequired
+}
+
+
 // exporting SidebarContext
 export const useSidebarContext = () => {
 	return useContext(SidebarContext);
@@ -33,3 +42,5 @@ export const useSidebarContext = () => {
 
 // export SidebarContext and SidebarProvider
 export default SidebarProvider;
+
+
