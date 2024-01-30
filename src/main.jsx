@@ -5,7 +5,6 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import "./index.css";
 import { BrowserRouter as Router } from "react-router-dom";
 import SearchProvider from "./context/SearchContext.jsx";
-import SidebarProvider from "/context/SidebarContext.jsx";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -20,10 +19,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 		<Router>
 			<QueryClientProvider client={queryClient}>
 				<SearchProvider>
-					<SidebarProvider>
-						<App />
-
-					</SidebarProvider>
+					<App />
 				</SearchProvider>
 			</QueryClientProvider>
 		</Router>
