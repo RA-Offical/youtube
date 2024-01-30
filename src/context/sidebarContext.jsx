@@ -32,4 +32,4 @@ export const useSidebarContext = () => {
 };
 
 // export SidebarContext and SidebarProvider
-export { SidebarProvider };
+export default SidebarProvider;
