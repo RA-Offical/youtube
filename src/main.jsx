@@ -20,10 +20,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 		<Router>
 			<QueryClientProvider client={queryClient}>
 				<SearchProvider>
-<SidebarProvider>
-	<App />
+					<SidebarProvider>
+						<App />
 
-</SidebarProvider>				</SearchProvider>
+					</SidebarProvider>
+				</SearchProvider>
 			</QueryClientProvider>
 		</Router>
 	</React.StrictMode>
