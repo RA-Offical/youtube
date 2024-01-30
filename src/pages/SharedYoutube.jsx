@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { Header, Sidebar } from "../components";
 import { useState } from "react";
-import SidebarProvider from "./../context/SidebarContext";
+import SidebarProvider from "../context/SidebarContext.jsx";
 
 function SharedYoutube() {
 	const [isSidebarOpen, setIsSidebarOpen] = useState(true);
