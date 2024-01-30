@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import SidebarProvider from "../context/SidebarContext.jsx";
+import SidebarProvider from "../context/SidebarContext";
 import { Header, Sidebar } from "../components";
 
 function SharedYoutube() {
