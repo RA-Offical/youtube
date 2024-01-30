@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { createContext, useContext } from "react";
+import { createContext } from "react";
 import OpenSidebarData from "../data/OpenedSidebarData";
 import ClosedSidebarData from "../data/ClosedSidebarData";
 // creating context
