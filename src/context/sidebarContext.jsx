@@ -24,13 +24,13 @@ function SidebarProvider({ children }) {
 			{children}
 		</SidebarContext.Provider>
 	);
-};
+}
 
 // defining props for SearchProvider
 SidebarProvider.propTypes = {
 	children: PropTypes.node.isRequired
 }
-// export SidebarContext and SidebarProvider
+// export SidebarProvider
 export default SidebarProvider;
 
 
