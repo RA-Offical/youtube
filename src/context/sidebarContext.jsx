@@ -1,16 +1,17 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
-import { createContext } from "react";
-import OpenSidebarData from "../data/OpenedSidebarData";
-import ClosedSidebarData from "../data/ClosedSidebarData";
+import {useState, createContext} from "react";
+import dataOpenedSidebar from "../data/OpenedSidebarData";
+import dataClosedSidebar from "../data/ClosedSidebarData";
 // creating context
 export const SidebarContext = createContext();
 
 // sidebar provider
 const SidebarProvider = ({ children }) => {
 	const [selectedGuide, setSelectedGuide] = useState("Home");
-	const [openedSidebarData, setOpenedSidebarData] = useState(OpenSidebarData);
-	const [closedSidebarData, setClosedSidebarData] = useState(ClosedSidebarData);
+	const [openedSidebarData, setOpenedSidebarData] = useState(dataOpenedSidebar);
+	const [closedSidebarData, setClosedSidebarData] = useState(dataClosedSidebar);
+
+
 
 	return (
 		<SidebarContext.Provider
