@@ -1,5 +1,5 @@
-import { useSidebarContext } from "../context/SidebarContext";
 import Icon from "./Icon";
+import {useSidebarContext} from "../hooks/useSidebarContext.jsx";
 
 const ClosedSidebarGuide = ({ icon, iconFill, guideText, handleClick, id }) => {
 	const { selectedGuide, setSelectedGuide } = useSidebarContext();

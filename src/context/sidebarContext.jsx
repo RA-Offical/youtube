@@ -1,12 +1,10 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
 import { createContext, useContext } from "react";
 import OpenSidebarData from "../data/OpenedSidebarData";
-import { useState } from "react";
 import ClosedSidebarData from "../data/ClosedSidebarData";
 // creating context
-const SidebarContext = createContext();
-
-
+export const SidebarContext = createContext();
 
 // sidebar provider
 const SidebarProvider = ({ children }) => {
@@ -33,13 +31,6 @@ const SidebarProvider = ({ children }) => {
 SidebarProvider.propTypes = {
 	children: PropTypes.node.isRequired
 }
-
-
-// exporting SidebarContext
-export const useSidebarContext = () => {
-	return useContext(SidebarContext);
-};
-
 // export SidebarContext and SidebarProvider
 export default SidebarProvider;
 

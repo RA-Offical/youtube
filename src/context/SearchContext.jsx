@@ -1,6 +1,8 @@
-import { useState, useContext, createContext } from "react";
+import PropTypes from "prop-types";
+import { useState, createContext } from "react";
 
-const SearchContext = createContext();
+// creating context
+export const SearchContext = createContext();
 
 function SearchProvider({ children }) {
 	const [searchQuery, setSearchQuery] = useState("");
@@ -12,6 +14,8 @@ function SearchProvider({ children }) {
 	);
 }
 
-export { SearchContext, SearchProvider };
+SearchProvider.propTypes = {
+	children: PropTypes.node.isRequired
+}
 
 export default SearchProvider;

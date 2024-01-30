@@ -1,5 +1,5 @@
 import { Icon, Image } from ".";
-import { useSidebarContext } from "../context/SidebarContext";
+import {useSidebarContext} from "../hooks/useSidebarContext.jsx";
 
 const OpenedSidebarInnerGuide = ({ props }) => {
 	const { styles, canSwitchIcon, icon, iconFill, guideText, image, isSelected, id } = props;

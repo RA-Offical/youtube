@@ -1,5 +1,5 @@
-import { useSidebarContext } from "../context/SidebarContext";
 import { OpenedSidebarInnerGuide, OpenedSidebarOuterGuide } from ".";
+import {useSidebarContext} from "../hooks/useSidebarContext.jsx";
 
 const OpenedSidebarGuide = (props) => {
 	const { iconFill, link, guideText } = props;

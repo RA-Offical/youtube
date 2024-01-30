@@ -1,5 +1,5 @@
 import { OpenedSidebarGuideCategory } from ".";
-import { useSidebarContext } from "../context/SidebarContext";
+import {useSidebarContext} from "../hooks/useSidebarContext.jsx";
 
 const OpenedSidebar = () => {
 	// getting sidebar data from sidebar context
